@@ -3,7 +3,11 @@ import { string } from 'prop-types';
 
 function Heading(props) {
   const { wording } = props;
-  return <h1>{wording}</h1>;
+  return (
+    <header>
+      <h1>{wording}</h1>
+    </header>
+  );
 }
 
 Heading.propTypes = {
