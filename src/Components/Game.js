@@ -38,15 +38,9 @@ function Game(props) {
       setCorrect(true);
       getNextCountry();
     } else {
-      console.log(
-        `answer given was ${guess}, when it the correct answer is ${name}`
-      );
+      removeLife();
       if (lives === 1) {
-        console.log('lost the last life!!');
-        removeLife();
         endGame();
-      } else {
-        removeLife();
       }
     }
   }
