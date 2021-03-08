@@ -14,10 +14,15 @@ function App() {
   const [lives, setLives] = useState(10);
   const [score, setScore] = useState(0);
   const diffs = [
-    { id: '10lives', wording: '10 lives', lives: 10 },
-    { id: '5lives', wording: '5 lives', lives: 5 },
-    { id: '3lives', wording: '3 lives', lives: 3 },
-    { id: 'onelife', wording: 'One life', lives: 1 },
+    {
+      classes: 'active',
+      id: '10lives',
+      wording: '10 lives',
+      value: '10',
+    },
+    { classes: '', id: '5lives', wording: '5 lives', value: '5' },
+    { classes: '', id: '3lives', wording: '3 lives', value: '3' },
+    { classes: '', id: 'onelife', wording: 'One life', value: '1' },
   ];
 
   function getCountries() {
@@ -46,8 +51,14 @@ function App() {
   useEffect(() => {
     getCountries();
   }, [!countries]);
-  function setDifficulty(amount) {
-    setLives(Number(amount));
+  function setDifficulty(e) {
+    const { value, id } = e.target;
+    document.getElementById('10lives').classList.remove('active');
+    document.getElementById('5lives').classList.remove('active');
+    document.getElementById('3lives').classList.remove('active');
+    document.getElementById('onelife').classList.remove('active');
+    document.getElementById(id).classList.add('active');
+    setLives(Number(value));
   }
   function endGame() {
     setGame('ended');
@@ -73,9 +84,12 @@ function App() {
             <Paragraph wording="Select the amount of lives you want" />
             {diffs.map((diff) => (
               <Button
+                key={diff.wording}
+                classes={diff.classes}
                 id={diff.id}
                 wording={diff.wording}
-                handleClick={() => setDifficulty(`${diff.lives}`)}
+                handleClick={setDifficulty}
+                value={diff.value}
               />
             ))}
           </div>
