@@ -1,15 +1,14 @@
 import React from 'react';
 import { func, string } from 'prop-types';
 import Paragraph from './shared/Paragraph';
+import Button from './shared/Button';
 
 function CorrectAnswer(props) {
   const { nextCountry, answer } = props;
   return (
     <>
       <Paragraph wording={`Correct! The answer is ${answer}`} />
-      <button type="button" onClick={() => nextCountry()}>
-        Next
-      </button>
+      <Button wording="Next" handleClick={() => nextCountry()} />
     </>
   );
 }
