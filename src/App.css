@@ -47,7 +47,7 @@ input[type='submit'] {
 
 button:hover,
 input[type='submit']:hover,
-.true {
+.active {
   cursor: pointer;
   color: #fff;
   background: var(--main);
