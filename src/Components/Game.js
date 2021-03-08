@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { string, func, number } from 'prop-types';
+import { shape, string, func, number } from 'prop-types';
 import Flag from './shared/Flag';
 import Paragraph from './shared/Paragraph';
 import GuessCountry from './GuessCountry';
@@ -8,6 +8,7 @@ import CorrectAnswer from './CorrectAnswer';
 function Game(props) {
   const {
     name,
+    altSpellings,
     newCountry,
     flag,
     lives,
@@ -16,6 +17,7 @@ function Game(props) {
     score,
     setScore,
   } = props;
+  const answers = [name, ...altSpellings];
   const [guess, setGuess] = useState('');
   const [correct, setCorrect] = useState(false);
 
@@ -30,13 +32,13 @@ function Game(props) {
   }
 
   function checkAnswer() {
+    const answersArr = answers.map((answer) => answer.toLowerCase());
     if (!guess) {
       return;
     }
-    if (name.toLowerCase() === guess.toLowerCase()) {
-      setScore(score + 1);
+    if (answersArr.includes(guess.toLowerCase())) {
+      setScore((currScore) => currScore + 1);
       setCorrect(true);
-      getNextCountry();
     } else {
       removeLife();
       if (lives === 1) {
@@ -49,7 +51,7 @@ function Game(props) {
     getNextCountry();
   }
   return (
-    <div>
+    <div id="gameBoard">
       <Paragraph wording={`Score: ${score}`} />
       <Paragraph wording={`Lives remaining: ${lives}`} />
       <Flag flag={flag} />
@@ -68,6 +70,7 @@ function Game(props) {
 
 Game.propTypes = {
   name: string.isRequired,
+  altSpellings: shape.isRequired,
   newCountry: func.isRequired,
   flag: string.isRequired,
   lives: number.isRequired,
