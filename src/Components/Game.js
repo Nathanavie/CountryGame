@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { shape, string, func, number } from 'prop-types';
 import Flag from './shared/Flag';
 import Paragraph from './shared/Paragraph';
+import Button from './shared/Button';
 import GuessCountry from './GuessCountry';
 import CorrectAnswer from './CorrectAnswer';
 
@@ -57,11 +58,14 @@ function Game(props) {
       <Paragraph wording={`Lives remaining: ${lives}`} />
       <Flag flag={flag} />
       {!correct ? (
-        <GuessCountry
-          checkAnswer={checkAnswer}
-          handleChange={handleChange}
-          guess={guess}
-        />
+        <>
+          <GuessCountry
+            checkAnswer={checkAnswer}
+            handleChange={handleChange}
+            guess={guess}
+          />
+          <Button wording="Skip this country" handleClick={nextCountry} />
+        </>
       ) : (
         <CorrectAnswer nextCountry={nextCountry} answer={name} />
       )}
