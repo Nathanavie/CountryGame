@@ -1,3 +1,7 @@
+:root {
+  --main: #145d26;
+}
+
 header,
 .container {
   padding: 2em;
@@ -8,7 +12,7 @@ header,
 }
 
 header {
-  background: #9a2b2b;
+  background: var(--main);
   border-radius: 20px 20px 0 0;
   color: #fff;
   font-size: 0.8rem;
@@ -16,12 +20,93 @@ header {
 }
 
 .App {
-  box-shadow: 0 8px 12px #bfd6e6;
+  box-shadow: 0.15rem 0 0.6rem rgba(0, 0, 0, 0.5);
   width: 45em;
   margin: 2% auto 0 auto;
   border-radius: 20px;
 }
 
+button,
+input[type='submit'] {
+  padding: 1em;
+  transition: all 0.3s ease;
+  color: var(--main);
+  border: solid 0.2rem var(--main);
+}
+
+button,
+input[type='submit'] {
+  width: 100%;
+  margin-top: 2em;
+  background: transparent;
+}
+
+input[type='submit'] {
+  margin-top: 1em;
+}
+
+button:hover,
+input[type='submit']:hover,
+.true {
+  cursor: pointer;
+  color: #fff;
+  background: var(--main);
+}
+
+@media (max-width: 768px) {
+  .App {
+    margin: 0;
+    width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+    overflow-y: hidden;
+  }
+  .container {
+    min-height: 50vh;
+  }
+  header {
+    border-radius: 0;
+  }
+  .randomWords {
+    width: 100vw;
+    margin-left: -2em;
+  }
+  .goToLeaderboard {
+    margin: 0;
+    padding: 0 2em;
+    display: flex;
+  }
+  .goToLeaderboard button {
+    margin: 0;
+    width: 100%;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 img {
   width: 100%;
+  filter: drop-shadow(0.15rem 0 0.6rem rgba(0, 0, 0, 0.5));
+}
+
+#gameBoard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+#gameBoard input {
+  padding: 1em;
+  text-align: center;
+}
+
+#gameBoard button,
+#gameBoard p {
+  margin: 0;
 }
