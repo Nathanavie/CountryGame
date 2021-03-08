@@ -45,6 +45,7 @@ function Game(props) {
         endGame();
       }
     }
+    setGuess('');
   }
   function nextCountry() {
     setCorrect(false);

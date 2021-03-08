@@ -44,6 +44,7 @@ function App() {
     }
   }
   function startGame() {
+    if (lives === 0) setLives(10);
     getCountries();
     getRandomCountry();
     setGame(true);
