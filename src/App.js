@@ -26,7 +26,7 @@ function App() {
   ];
 
   function getCountries() {
-    getData('https://restcountries.eu/rest/v2/')
+    getData('https://restcountries.com/v2/all')
       .then((res) => {
         setCountries(res);
       })
@@ -51,7 +51,7 @@ function App() {
   }
   useEffect(() => {
     getCountries();
-  }, [!countries]);
+  }, []);
   function setDifficulty(e) {
     const { value, id } = e.target;
     document.getElementById('10lives').classList.remove('active');
